@@ -56,13 +56,13 @@ complete_test <- cbind(x_test, y_test, subject_test)
 merged_data <- rbind(complete_train, complete_test)
 
 #Give Columns descriptive names from features.txt
-colnames(merged_data) = features[,2];
+colnames(merged_data) = features[,2]
 
 #@SUBSET DATA
 ##############
 
 #Vector of columns we want to extract (only mean and standard deviation measurements)
-subset_columns <- grep("*mean*|*std*", features[,2])
+subset_columns <- grep("*[Mm]ean*|*[Ss]td*", features[,2])
 
 #Still want to keep the last two "subject" columns
 subset_columns <- c(subset_columns, 562, 563)
@@ -81,8 +81,12 @@ colnames(activity_labels) = c("ActivityID","Activity")
 merged_data <- merge(merged_data,activity_labels,by='ActivityID',all.x=TRUE);
 
 #write cleaned data to file
-write.table(merged_data, "merged_data.txt")
+write.table(merged_data, "./tidy_data.txt")
 
+#@PRODUCE TIDY DATA w/ AVERAGES
+###############################
+merged_data <- aggregate(merged_data, by=list(Activity = merged_data$Activity, SubjectID=merged_data$SubjectID), mean)
+merged_data[,91] <- NULL
+merged_data[,90] <- NULL
 
-#@EXPORT TIDY DATA
-###################
+write.table(merged_data, "./tidy_data_averages.txt")
