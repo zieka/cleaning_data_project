@@ -8,19 +8,19 @@
 #
 # This script does the following:
 #
-# 	* Merges the training and the test sets to create one data set.
+#  * Merges the training and the test sets to create one data set.
 #
-#		* Extracts only the measurements on the mean and standard
-#			deviation for each measurement.
+#  * Extracts only the measurements on the mean and standard
+#  deviation for each measurement.
 #
-#		* Uses descriptive activity names to name the activities in the
-#			data set
+#  * Uses descriptive activity names to name the activities in the
+#  data set
 #
-#		* Appropriately labels the data set with descriptive variable
-#			names.
+#  * Appropriately labels the data set with descriptive variable
+#  names.
 #
-#		* Creates a second, independent tidy data set with the average of
-#			each variable for each activity and each subject.
+#  * Creates a second, independent tidy data set with the average of
+#  each variable for each activity and each subject.
 #
 
 # Read in features and activities
@@ -31,7 +31,7 @@ activity_labels <- read.table('./UCI\ HAR\ Dataset/activity_labels.txt',header=F
 x_train <- read.table('./UCI\ HAR\ Dataset/train/x_train.txt',header=F);
 y_train <- read.table('./UCI\ HAR\ Dataset/train/y_train.txt',header=F);
 
-subject_train <- read.table('./train/subject_train.txt',header=F);
+subject_train <- read.table('/UCI\ HAR\ Dataset./train/subject_train.txt',header=F);
 
 # Read in test data
 x_test <- read.table('./UCI\ HAR\ Dataset/test/x_test.txt',header=F);
