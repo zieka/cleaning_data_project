@@ -30,7 +30,6 @@ activity_labels <- read.table('./UCI\ HAR\ Dataset/activity_labels.txt',header=F
 # Read in training data
 x_train <- read.table('./UCI\ HAR\ Dataset/train/x_train.txt',header=F);
 y_train <- read.table('./UCI\ HAR\ Dataset/train/y_train.txt',header=F);
-
 subject_train <- read.table('./UCI\ HAR\ Dataset/train/subject_train.txt',header=F);
 
 # Read in test data
@@ -38,12 +37,20 @@ x_test <- read.table('./UCI\ HAR\ Dataset/test/x_test.txt',header=F);
 y_test <- read.table('./UCI\ HAR\ Dataset/test/y_test.txt',header=F);
 subject_test <- read.table('./UCI\ HAR\ Dataset/test/subject_test.txt',header=F);
 
+# Merge Data:
+
+# Merge columns of training set
+complete_train <- cbind(x_train, y_train, subject_train)
 
 
+# Merge columns of training set
+complete_test <- cbind(x_test, y_test, subject_test)
+
+# Merge training data and test data
+merge_data <- rbind(complete_train, complete_test)
+
+#Extract only mean and standard deveiation measurements
 
 
-# Merge Data
-
-# Reshape Data
 
 # Save Data
