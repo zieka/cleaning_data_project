@@ -6,7 +6,7 @@ http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartpho
 
 
 ## run_analysis.R 
-returns two files (tidy_data.txt and tidy_data.averages.txt) using the following procedure:
+returns two files (tidy_data.txt and tidy_data_averages.txt) using the following procedure:
 
 1. Merges the training and the test sets to create one data set.
 2. Extracts only the measurements on the mean and standard deviation for each measurement. 
