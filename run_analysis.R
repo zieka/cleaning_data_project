@@ -88,5 +88,5 @@ write.table(merged_data, "./tidy_data.txt")
 merged_data <- aggregate(merged_data, by=list(Activity = merged_data$Activity, SubjectID=merged_data$SubjectID), mean)
 merged_data[,91] <- NULL
 merged_data[,90] <- NULL
-
+merged_data[,3] <- NULL
 write.table(merged_data, "./tidy_data_averages.txt")
