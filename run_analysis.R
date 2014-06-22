@@ -24,19 +24,19 @@
 #
 
 # Read in features and activities
-features <- read.table('./features.txt',header=F);
+features <- read.table('./UCI\ HAR\ Dataset/features.txt',header=F);
 activity_labels <- read.table('./activity_labels.txt',header=F);
 
 # Read in training data
 x_train <- read.table('./UCI\ HAR\ Dataset/train/x_train.txt',header=F);
-y_train <- read.table('./train/y_train.txt',header=F);
+y_train <- read.table('./UCI\ HAR\ Dataset/train/y_train.txt',header=F);
 
 subject_train <- read.table('./train/subject_train.txt',header=F);
 
 # Read in test data
-x_test <- read.table('./test/x_test.txt',header=F);
-y_test <- read.table('./test/y_test.txt',header=F);
-subject_test <- read.table('./test/subject_test.txt',header=F);
+x_test <- read.table('./UCI\ HAR\ Dataset/test/x_test.txt',header=F);
+y_test <- read.table('./UCI\ HAR\ Dataset/test/y_test.txt',header=F);
+subject_test <- read.table('./UCI\ HAR\ Dataset/test/subject_test.txt',header=F);
 
 
 
