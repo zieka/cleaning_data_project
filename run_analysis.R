@@ -23,52 +23,66 @@
 #  each variable for each activity and each subject.
 #
 
-#package included for ease of renaming columns
+#Package included for ease of renaming columns
 library(data.table)
 
-#@ READ DATA
+#@READ DATA
 #############
 
-# Read in features and activities
+#Read in features and activities
 features <- read.table('./UCI\ HAR\ Dataset/features.txt',header=F);
 activity_labels <- read.table('./UCI\ HAR\ Dataset/activity_labels.txt',header=F);
 
-# Read in training data
+#Read in training data
 x_train <- read.table('./UCI\ HAR\ Dataset/train/x_train.txt',header=F);
 y_train <- read.table('./UCI\ HAR\ Dataset/train/y_train.txt',header=F);
 subject_train <- read.table('./UCI\ HAR\ Dataset/train/subject_train.txt',header=F);
 
-# Read in test data
+#Read in test data
 x_test <- read.table('./UCI\ HAR\ Dataset/test/x_test.txt',header=F);
 y_test <- read.table('./UCI\ HAR\ Dataset/test/y_test.txt',header=F);
 subject_test <- read.table('./UCI\ HAR\ Dataset/test/subject_test.txt',header=F);
 
-#@ MERGE DATA
+#@MERGE DATA
 #############
 
-# Merge columns of training set
+#Merge columns of training set
 complete_train <- cbind(x_train, y_train, subject_train)
 
-# Merge columns of training set
+#Merge columns of training set
 complete_test <- cbind(x_test, y_test, subject_test)
 
-# Merge training data and test data
-merge_data <- rbind(complete_train, complete_test)
+#Merge training data and test data
+merged_data <- rbind(complete_train, complete_test)
 
-#@ SUBSET DATA
+#Give Columns descriptive names from features.txt
+colnames(merged_data) = features[,2];
+
+#@SUBSET DATA
 ##############
 
-#vector of columns we and to extract (only mean and standard deviation measurements)
+#Vector of columns we want to extract (only mean and standard deviation measurements)
 subset_columns <- grep("*mean*|*std*", features[,2])
 
 #Still want to keep the last two "subject" columns
 subset_columns <- c(subset_columns, 562, 563)
 
 #Rename the columns the last two columns
-setnames(merge_data,562:563,c("Activity","Subject"))
+setnames(merged_data,562:563,c("ActivityID","SubjectID"))
 
-#subset the data with our vector
-merge_data <- merge_data[, subset_columns]
+#Subset the data with our vector
+merged_data <- merged_data[, subset_columns]
 
-#@ EXPORT TIDY DATA
+#@TIDY UP DATA
+##############
+
+#replace activityID with descriptive activity name from activity_labels.txt
+colnames(activity_labels) = c("ActivityID","Activity")
+merged_data <- merge(merged_data,activity_labels,by='ActivityID',all.x=TRUE);
+
+#write cleaned data to file
+write.table(merge_data, "merged_data.txt")
+
+
+#@EXPORT TIDY DATA
 ###################
