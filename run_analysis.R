@@ -23,6 +23,9 @@
 #  each variable for each activity and each subject.
 #
 
+#package included for ease of renaming columns
+library(data.table)
+
 #@ READ DATA
 #############
 
@@ -55,13 +58,17 @@ merge_data <- rbind(complete_train, complete_test)
 #@ SUBSET DATA
 ##############
 
-#Extract only mean and standard deveiation measurements
-
+#vector of columns we and to extract (only mean and standard deviation measurements)
 subset_columns <- grep("*mean*|*std*", features[,2])
 
 #Still want to keep the last two "subject" columns
-
 subset_columns <- c(subset_columns, 562, 563)
+
+#Rename the columns the last two columns
+setnames(merge_data,562:563,c("Activity","Subject"))
+
+#subset the data with our vector
+merge_data <- merge_data[, subset_columns]
 
 #@ EXPORT TIDY DATA
 ###################
