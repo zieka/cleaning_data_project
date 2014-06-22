@@ -23,6 +23,9 @@
 #  each variable for each activity and each subject.
 #
 
+#@ READ DATA
+#############
+
 # Read in features and activities
 features <- read.table('./UCI\ HAR\ Dataset/features.txt',header=F);
 activity_labels <- read.table('./UCI\ HAR\ Dataset/activity_labels.txt',header=F);
@@ -37,11 +40,11 @@ x_test <- read.table('./UCI\ HAR\ Dataset/test/x_test.txt',header=F);
 y_test <- read.table('./UCI\ HAR\ Dataset/test/y_test.txt',header=F);
 subject_test <- read.table('./UCI\ HAR\ Dataset/test/subject_test.txt',header=F);
 
-# Merge Data:
+#@ MERGE DATA
+#############
 
 # Merge columns of training set
 complete_train <- cbind(x_train, y_train, subject_train)
-
 
 # Merge columns of training set
 complete_test <- cbind(x_test, y_test, subject_test)
@@ -49,8 +52,16 @@ complete_test <- cbind(x_test, y_test, subject_test)
 # Merge training data and test data
 merge_data <- rbind(complete_train, complete_test)
 
+#@ SUBSET DATA
+##############
+
 #Extract only mean and standard deveiation measurements
 
+subset_columns <- grep("*mean*|*std*", features[,2])
 
+#Still want to keep the last two "subject" columns
 
-# Save Data
+subset_columns <- c(subset_columns, 562, 563)
+
+#@ EXPORT TIDY DATA
+###################
