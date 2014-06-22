@@ -31,7 +31,7 @@ activity_labels <- read.table('./UCI\ HAR\ Dataset/activity_labels.txt',header=F
 x_train <- read.table('./UCI\ HAR\ Dataset/train/x_train.txt',header=F);
 y_train <- read.table('./UCI\ HAR\ Dataset/train/y_train.txt',header=F);
 
-subject_train <- read.table('/UCI\ HAR\ Dataset./train/subject_train.txt',header=F);
+subject_train <- read.table('./UCI\ HAR\ Dataset/train/subject_train.txt',header=F);
 
 # Read in test data
 x_test <- read.table('./UCI\ HAR\ Dataset/test/x_test.txt',header=F);
