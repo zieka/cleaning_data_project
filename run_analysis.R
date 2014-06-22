@@ -25,7 +25,7 @@
 
 # Read in features and activities
 features <- read.table('./UCI\ HAR\ Dataset/features.txt',header=F);
-activity_labels <- read.table('./activity_labels.txt',header=F);
+activity_labels <- read.table('./UCI\ HAR\ Dataset/activity_labels.txt',header=F);
 
 # Read in training data
 x_train <- read.table('./UCI\ HAR\ Dataset/train/x_train.txt',header=F);
