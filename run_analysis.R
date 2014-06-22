@@ -81,7 +81,7 @@ colnames(activity_labels) = c("ActivityID","Activity")
 merged_data <- merge(merged_data,activity_labels,by='ActivityID',all.x=TRUE);
 
 #write cleaned data to file
-write.table(merge_data, "merged_data.txt")
+write.table(merged_data, "merged_data.txt")
 
 
 #@EXPORT TIDY DATA
